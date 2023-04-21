@@ -20,7 +20,7 @@ public class Publisher {
     private String state;
     private String zip;
 
-    @OneToMany
+    @OneToMany // one publisher is going to publish many books
     @JoinColumn(name = "publisher_id")
     private Set<Book> books = new HashSet<>();
 

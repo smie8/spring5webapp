@@ -13,15 +13,17 @@ public class BookController {
 
     private final BookRepository bookRepository;
 
+    // we can inject bookRepository via constructor since this is Spring managed bean (@Controller)
     public BookController(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
-    @RequestMapping("/books")
-    public String getBooks(Model model){
+    @RequestMapping("/books") // map request to method
+    public String getBooks(Model model){ // MODEL will be returned to the VIEW
 
+        // let's enhance the model (with a list of books) before returning it
         model.addAttribute("books", bookRepository.findAll());
 
-        return "books/list";
+        return "books/list"; // look for the list template inside the directory of books
     }
 }
